@@ -39,7 +39,10 @@ export default function Home() {
           </Box>
           <Box>
             <h2 className = "subTitle">O que você deseja fazer?</h2>
-            <form>
+            <form onSubmit = {function handleCommunityCreation(e){
+              e.preventDefault();
+              console.log(e);
+            }}>
               <div>
                 <input
                   placeholder = "Qual vai ser o nome da sua comunidade?"
