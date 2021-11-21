@@ -6,7 +6,6 @@ const Box = styled.div`
 
   padding: 16px;
 
-  /* CSS Pré-Pronto */
   margin-bottom: 10px;
   .boxLink {
     font-size: 14px;
@@ -38,11 +37,11 @@ const Box = styled.div`
     border-bottom-color: #ECF2FA;
   }
   input {
-    width: 100%;
+    width: 93.5%;
     background-color: #F4F4F4;
     color: #333333;
     border: 0;
-    padding: 14px 16px;
+    padding: 14px 19px;
     margin-bottom: 14px;
     border-radius: 10000px;
     ::placeholder {
