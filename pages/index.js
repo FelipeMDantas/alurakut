@@ -23,6 +23,7 @@ function ProfilesSideBar(propriedades){
 export default function Home() {
   const randomUser = 'FelipeMDantas';
   const [communities, setCommunities] = React.useState([{
+    id: '56461561325662642',
     title: 'Eu odeio acordar cedo',
     image: 'https://pbs.twimg.com/profile_images/143696361/avatar_400x400.jpg',
   }]);
@@ -51,10 +52,11 @@ export default function Home() {
               console.log('Field: ', formData.get('title'));
               console.log('Field: ', formData.get('image'));
               const community = {
+                id: new Date().toISOString(),
                 title: formData.get('title'),
                 image: formData.get('image'),
               }
-              const updatedCommunities = [...communities, 'Alura Stars'];
+              const updatedCommunities = [...communities, community];
               setCommunities(updatedCommunities);
             }}>
               <div>
@@ -84,8 +86,8 @@ export default function Home() {
               <ul>
                 {communities.map((item) => {
                   return(
-                    <li>
-                      <a href = {`/users/${item.title}`} key = {item.title}>
+                    <li id = {item.id}>
+                      <a href = {`/users/${item.title}`}>
                         <img src = {item.image} />
                         <span>{item.title}</span>
                       </a>
@@ -100,8 +102,8 @@ export default function Home() {
             <ul>
               {communityPeople.map((item) => {
                 return(
-                  <li>
-                    <a href = {`/users/${item}`} key = {item}>
+                  <li key = {item}>
+                    <a href = {`/users/${item}`}>
                       <img src = {`https://github.com/${item}.png`}/>
                       <span>{item}</span>
                     </a>
