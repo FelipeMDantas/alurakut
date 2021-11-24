@@ -6,7 +6,7 @@ import { ProfileRelationsBoxWrapper } from "../src/components/ProfileRelations";
 
 function ProfilesSideBar(propriedades){
   return(
-    <Box>
+    <Box as = "aside">
       <img src = {`https://github.com/${propriedades.githubUser}.png`} style = {{ borderRadius: '8px'}}></img>
       <hr />
       <p>
@@ -83,6 +83,9 @@ export default function Home() {
         <div className = "profileRelationsArea" style = {{ gridArea: 'profileRelationsArea' }}>
           <ProfileRelationsBoxWrapper>
             <ProfileRelationsBoxWrapper>
+              <h2 className = 'smallTitle'>
+                Comunidades ({communities.length})
+              </h2>
               <ul>
                 {communities.map((item) => {
                   return(
