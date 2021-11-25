@@ -2,6 +2,16 @@ import styled from 'styled-components';
 import Box from '../Box';
 
 export const ProfileRelationsBoxWrapper = styled(Box)`
+  #commuHeader {
+    position: relative;
+    right: 17px;
+    bottom: 25px;
+  }
+  #commuImg{ 
+    position: relative;
+    right: 60px;
+    bottom: 25px;
+  }
   ul {
     display: grid;
     grid-gap: 8px;

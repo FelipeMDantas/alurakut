@@ -83,14 +83,14 @@ export default function Home() {
         <div className = "profileRelationsArea" style = {{ gridArea: 'profileRelationsArea' }}>
           <ProfileRelationsBoxWrapper>
             <ProfileRelationsBoxWrapper>
-              <h2 className = 'smallTitle'>
+              <h2 className = 'smallTitle' id = "commuHeader">
                 Comunidades ({communities.length})
               </h2>
               <ul>
                 {communities.map((item) => {
                   return(
                     <li id = {item.id}>
-                      <a href = {`/users/${item.title}`}>
+                      <a href = {`/users/${item.title}`} id = "commuImg">
                         <img src = {item.image} />
                         <span>{item.title}</span>
                       </a>
