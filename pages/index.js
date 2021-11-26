@@ -20,6 +20,28 @@ function ProfilesSideBar(propriedades){
   )
 }
 
+function ProfileRelationsBox(propriedades){
+  return(
+    <ProfileRelationsBoxWrapper>
+      <h2 className = 'smallTitle'>
+        {propriedades.title} ({propriedades.items.length})
+      </h2>
+      <ul>
+        {/*followers.map((item) => {
+          return(
+            <li key = {item}>
+              <a href = {`https://github.com/${item}.png`}>
+                <img src = {item.image} />
+                <span>{item.title}</span>
+              </a>
+            </li>
+          )
+        })*/}
+      </ul>
+    </ProfileRelationsBoxWrapper>
+  )
+}
+
 export default function Home() {
   const randomUser = 'FelipeMDantas';
   const [communities, setCommunities] = React.useState([{
@@ -27,8 +49,17 @@ export default function Home() {
     title: 'Eu odeio acordar cedo',
     image: 'https://pbs.twimg.com/profile_images/143696361/avatar_400x400.jpg',
   }]);
-  console.log(communities);
   const communityPeople = ['juunegreiros', 'omariosouto', 'peas', 'rafaballerini', 'marcobrunodev', 'felipefialho'];
+  const followers = [];
+  React.useEffect(function(){
+    fetch('https://api.github.com/users/peas/followers')
+    .then(function(serverReturn){
+      return serverReturn.json();
+    })
+    .then(function(entireReturn){
+      console.log(entireReturn);
+    })
+  })
 
   return (
     <>
@@ -81,24 +112,25 @@ export default function Home() {
           </Box>
         </div>
         <div className = "profileRelationsArea" style = {{ gridArea: 'profileRelationsArea' }}>
+          <ProfileRelationsBox title = "Seguidores" items = {followers}/>
           <ProfileRelationsBoxWrapper>
-            <ProfileRelationsBoxWrapper>
-              <h2 className = 'smallTitle' id = "commuHeader">
-                Comunidades ({communities.length})
-              </h2>
-              <ul>
-                {communities.map((item) => {
-                  return(
-                    <li id = {item.id}>
-                      <a href = {`/users/${item.title}`} id = "commuImg">
-                        <img src = {item.image} />
-                        <span>{item.title}</span>
-                      </a>
-                    </li>
-                  )
-                })}
-              </ul>
-            </ProfileRelationsBoxWrapper>
+            <h2 className = 'smallTitle'>
+              Comunidades ({communities.length})
+            </h2>
+            <ul>
+              {communities.map((item) => {
+                return(
+                  <li key = {item.id}>
+                    <a href = {`/users/${item.title}`}>
+                      <img src = {item.image} />
+                      <span>{item.title}</span>
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+          </ProfileRelationsBoxWrapper>
+          <ProfileRelationsBoxWrapper>
             <h2 className = 'smallTitle'>
               Pessoas da comunidade Dev ({communityPeople.length})
             </h2>
