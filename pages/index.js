@@ -50,16 +50,16 @@ export default function Home() {
     image: 'https://pbs.twimg.com/profile_images/143696361/avatar_400x400.jpg',
   }]);
   const communityPeople = ['juunegreiros', 'omariosouto', 'peas', 'rafaballerini', 'marcobrunodev', 'felipefialho'];
-  const followers = [];
+  const [followers, setFollowers] = React.useState([]);
   React.useEffect(function(){
     fetch('https://api.github.com/users/peas/followers')
     .then(function(serverReturn){
       return serverReturn.json();
     })
     .then(function(entireReturn){
-      console.log(entireReturn);
+      setFollowers(entireReturn);
     })
-  })
+  }, [])
 
   return (
     <>
