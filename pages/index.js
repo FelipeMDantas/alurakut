@@ -59,6 +59,24 @@ export default function Home() {
     .then(function(entireReturn){
       setFollowers(entireReturn);
     })
+
+    fetch('https://graphql.datocms.com/', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'b2a0754f558320161be0f1fb179d69',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json' 
+      },
+      body: JSON.stringify({ "query": `query {
+        allCommunities {
+          title
+          id
+          imageUrl
+          creatorSlug
+        }
+      }`
+      }) 
+    })
   }, [])
 
   return (
