@@ -44,11 +44,7 @@ function ProfileRelationsBox(propriedades){
 
 export default function Home() {
   const randomUser = 'FelipeMDantas';
-  const [communities, setCommunities] = React.useState([{
-    id: '56461561325662642',
-    title: 'Eu odeio acordar cedo',
-    image: 'https://pbs.twimg.com/profile_images/143696361/avatar_400x400.jpg',
-  }]);
+  const [communities, setCommunities] = React.useState([]);
   const communityPeople = ['juunegreiros', 'omariosouto', 'peas', 'rafaballerini', 'marcobrunodev', 'felipefialho'];
   const [followers, setFollowers] = React.useState([]);
   React.useEffect(function(){
@@ -76,6 +72,12 @@ export default function Home() {
         }
       }`
       }) 
+    })
+    .then((response) => response.json())
+    .then((entireReturn) => {
+      const communitiesOriginatedFromDato = entireReturn.data.allCommunities;
+      console.log(communitiesOriginatedFromDato);
+      setCommunities(communitiesOriginatedFromDato);
     })
   }, [])
 
@@ -139,8 +141,8 @@ export default function Home() {
               {communities.map((item) => {
                 return(
                   <li key = {item.id}>
-                    <a href = {`/users/${item.title}`}>
-                      <img src = {item.image} />
+                    <a href = {`/communities/${item.id}`}>
+                      <img src = {item.imageUrl} />
                       <span>{item.title}</span>
                     </a>
                   </li>
