@@ -76,7 +76,6 @@ export default function Home() {
     .then((response) => response.json())
     .then((entireReturn) => {
       const communitiesOriginatedFromDato = entireReturn.data.allCommunities;
-      console.log(communitiesOriginatedFromDato);
       setCommunities(communitiesOriginatedFromDato);
     })
   }, [])
