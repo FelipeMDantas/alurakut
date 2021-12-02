@@ -102,12 +102,25 @@ export default function Home() {
               console.log('Field: ', formData.get('title'));
               console.log('Field: ', formData.get('image'));
               const community = {
-                id: new Date().toISOString(),
                 title: formData.get('title'),
-                image: formData.get('image'),
+                imageUrl: formData.get('image'),
+                creatorSlug: randomUser
               }
-              const updatedCommunities = [...communities, community];
-              setCommunities(updatedCommunities);
+
+              fetch('/api/communities', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSOM.stringify(community)
+              })
+              .then(async(response) => {
+                const data = await response.json();
+                console.log(data);
+              })
+
+              //const updatedCommunities = [...communities, community];
+              //setCommunities(updatedCommunities);
             }}>
               <div>
                 <input

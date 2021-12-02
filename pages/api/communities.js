@@ -4,17 +4,25 @@ export default async function requestsReceiver(request, response){
     const token = 'bb98848adb0a02c7707234c148702e';
     const client = new SiteClient(token);
 
-    const createdRecord = await client.items.create({
-        itemType: '1470509',
-        title: 'Comunidade de teste',
-        imageUrl: 'https://github.com/FelipeMDantas.png', 
-        creatorSlug: 'FelipeMDantas'
-    })
+    if(request.method === 'POST'){
+        const createdRecord = await client.items.create({
+            itemType: '1470509',
+            ...request.body,
+            /*title: 'Comunidade de teste',
+            imageUrl: 'https://github.com/FelipeMDantas.png', 
+            creatorSlug: 'FelipeMDantas' */
+        })
+    
+        console.log(createdRecord);
+    
+        response.json({
+            data: 'Algum dado qualquer',
+            createdRecord: createdRecord
+        })
+        return;
+    }
 
-    console.log(createdRecord);
-
-    response.json({
-        data: 'Algum dado qualquer',
-        createdRecord: createdRecord
+    response.status(404).json({
+        message: 'Ainda não temos nada no GET, mas no POST temos!'
     })
 }
