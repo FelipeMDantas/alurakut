@@ -112,15 +112,15 @@ export default function Home() {
                 headers: {
                   'Content-Type': 'application/json'
                 },
-                body: JSOM.stringify(community)
+                body: JSON.stringify(community)
               })
               .then(async(response) => {
                 const data = await response.json();
-                console.log(data);
+                console.log(data.createdRecord);
+                const community = data.createdRecord;
+                const updatedCommunities = [...communities, community];
+                setCommunities(updatedCommunities);
               })
-
-              //const updatedCommunities = [...communities, community];
-              //setCommunities(updatedCommunities);
             }}>
               <div>
                 <input
