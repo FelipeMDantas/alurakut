@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 
 export default function LoginScreen() {
   const router = useRouter();
+  const [githubUser, setGithubUser] = React.useState('');
 
   return (
     <main style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -16,16 +17,24 @@ export default function LoginScreen() {
         </section>
 
         <section className="formArea">
-          <form className="box">
+          <form className="box" onSubmit = {(eventInfo) => {
+            eventInfo.preventDefault();
+            //alert('Alguém clicou no botão');
+            console.log('Usuário: ', githubUser);
+            router.push('/');
+            }}>
             <p>
               Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!
           </p>
             <input
                 placeholder="Usuário"
+                value = {githubUser}
+                onChange = {(event) => {
+                  console.log(event.target.value);
+                  setGithubUser(event.target.value);
+                }}
             />
-            <button onClick = {() => {
-                alert('Alguém clicou no botão');
-            }} type="submit">
+            <button type="submit">
               Login
             </button>
           </form>
