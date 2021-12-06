@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import nookies from 'nookies';
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -20,8 +21,23 @@ export default function LoginScreen() {
           <form className="box" onSubmit = {(eventInfo) => {
             eventInfo.preventDefault();
             //alert('Alguém clicou no botão');
-            console.log('Usuário: ', githubUser);
-            router.push('/');
+            //console.log('Usuário: ', githubUser);
+            fetch('https://alurakut.vercel.app/api/login', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json' 
+              },
+              body: JSON.stringify({githubUser: 'FelipeMDantas'})
+            })
+            .then(async (serverReturn) => {
+              const returnedData = await serverReturn.json();
+              const token = returnedData.token;
+              nookies.set(null, 'USER_TOKEN', token, {
+                path: '/',
+                maxAge: 86400 * 7
+              })
+              router.push('/');
+            })
             }}>
             <p>
               Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!
