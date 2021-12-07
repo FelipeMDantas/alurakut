@@ -27,7 +27,7 @@ export default function LoginScreen() {
               headers: {
                 'Content-Type': 'application/json' 
               },
-              body: JSON.stringify({githubUser: 'FelipeMDantas'})
+              body: JSON.stringify({githubUser: githubUser})
             })
             .then(async (serverReturn) => {
               const returnedData = await serverReturn.json();

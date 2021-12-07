@@ -1,4 +1,6 @@
 import React from "react";
+import nookies from 'nookies';
+import jwt from 'jsonwebtoken';
 import MainGrid from "../src/components/MainGrid";
 import Box from "../src/components/Box";
 import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/OrcuteCommons';
@@ -42,8 +44,8 @@ function ProfileRelationsBox(propriedades){
   )
 }
 
-export default function Home() {
-  const randomUser = 'FelipeMDantas';
+export default function Home(props) {
+  const randomUser = props.githubUser;
   const [communities, setCommunities] = React.useState([]);
   const communityPeople = ['juunegreiros', 'omariosouto', 'peas', 'rafaballerini', 'marcobrunodev', 'felipefialho'];
   const [followers, setFollowers] = React.useState([]);
@@ -183,4 +185,16 @@ export default function Home() {
       </MainGrid>
     </>
   )
+}
+
+export async function getServerSideProps(context){
+  const cookies = nookies.get(context);
+  const token = cookies.USER_TOKEN;
+  const { githubUser } = jwt.decode(token);
+
+  return{
+    props: {
+      githubUser
+    },
+  }
 }
