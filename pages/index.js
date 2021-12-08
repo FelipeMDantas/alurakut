@@ -192,6 +192,13 @@ export async function getServerSideProps(context){
   const token = cookies.USER_TOKEN;
   const { githubUser } = jwt.decode(token);
 
+  const {isAuthenticated} = await fetch('https://alurakut.vercel.app/api/auth', {
+    headers: {
+      Authorization: token
+    }
+  })
+  .then((response) => response.json())
+
   return{
     props: {
       githubUser
