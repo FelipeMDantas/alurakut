@@ -15,10 +15,16 @@
 
 ## Tech
 
-A variety of technologies were employed in this project. Among them:
+A couple of technologies were employed in this project. Among them:
 
-- ReactJS
-- NextJS
-- Yarn
+- [ReactJS] - a JavaScript library for building user interfaces
+- [NextJS] - a server side rendering React framework
+- [Yarn] - a package manager
+- [JSON Web Tokens] - a method to decode, verify and generate JWTs
+- [Dato CMS] - a content management system
 
-This README is to be filled with more detail in the near future.
+    [ReactJS]: https://reactjs.org/
+    [NextJS]: https://nextjs.org/
+    [Yarn]: https://yarnpkg.com/
+    [JSON Web Tokens]: https://jwt.io/
+    [Dato CMS]: https://www.datocms.com/
