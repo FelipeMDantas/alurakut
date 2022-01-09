@@ -10,7 +10,7 @@ Login Page
 <img src = "images/login_page.png">
 
 Logged-in Page
-<img src = "images/logged_in_page.png" width="1200">
+<img src = "images/logged_in_page.png">
 
 ## Features
 
