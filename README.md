@@ -6,11 +6,11 @@
 
 >Alurakut is a wannabe epic social media; it merely looks like one though.
 
-<img src = "images/login_page.png" width="1200">
 Login Page
+<img src = "images/login_page.png" width="1200">
 
-<img src = "images/logged_in_page.png" width="1200">
 Logged-in Page
+<img src = "images/logged_in_page.png" width="1200">
 
 ## Features
 
